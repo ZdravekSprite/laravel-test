@@ -65,8 +65,12 @@ class UserController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(User $user)
+  public function destroy(Request $request)
   {
-    //
+    $request->validate([
+      'password' => ['required', 'current-password'],
+    ]);
+    $user = User::findOrFail($request->id);;
+    $user->delete();
   }
 }
