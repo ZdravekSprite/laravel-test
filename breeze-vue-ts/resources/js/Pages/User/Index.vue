@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import NewForm from '@/Components/NewForm.vue';
 
-defineProps({
-  users: Array,
-});
+interface User { id: string; name: string; email: string; };
+
+defineProps<{
+  users: Array<User>,
+}>();
 </script>
 
 <template>
@@ -15,6 +18,7 @@ defineProps({
     <template #header>
       <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Users</h2>
+        <NewForm  :storeRoute="('user.store')" :labels="[['name'],['email']]" />
       </div>
     </template>
 
