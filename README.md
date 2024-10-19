@@ -8,7 +8,7 @@ composer run dev
 ```
 
 - to-do:
-  - [ ] [vue](vue/vue00.md)
+  - [ ] [Vue](_vue/vue00.md)
 
 ## Would you like to install a starter kit? [No starter kit]:
   [none     ] No starter kit
