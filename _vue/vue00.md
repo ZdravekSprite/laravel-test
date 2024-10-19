@@ -3,8 +3,8 @@
 - to-do:
   - [ ] [Components]
     - [ ] [NewForm](vue02.md)
-    - [ ] [EditForm]
-    - [ ] [DeleteForm]
+    - [ ] [EditForm](vue04.md)
+    - [ ] [DeleteForm](vue03.md)
     - [ ] [Search]
     - [ ] [Export]
     - [ ] [Import]

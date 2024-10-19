@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import NewForm from '@/Components/NewForm.vue';
+import EditForm from '@/Components/EditForm.vue';
 import DeleteForm from '@/Components/DeleteForm.vue';
 import { Head, usePage } from '@inertiajs/vue3';
-import NewForm from '@/Components/NewForm.vue';
 
 interface User { id: number; name: string; email: string; };
 
@@ -41,6 +42,11 @@ const authUser = usePage().props.auth.user;
                 <td class="mt-1 text-sm text-gray-600 dark:text-gray-400">{{ u.name }}</td>
                 <td class="mt-1 text-sm text-gray-600 dark:text-gray-400">{{ u.email }}</td>
                 <td v-if="u.id !== authUser.id" class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                  <EditForm class="float-left"
+                    :element="u"
+                    :updateRoute="('user.update')"
+                    :labels="['name','email']"
+                  />
                   <DeleteForm class="float-right"
                     :element="u"
                     :model="('user')"
