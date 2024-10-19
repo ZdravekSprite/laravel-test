@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import DeleteUserForm from './Partials/DeleteUserForm.vue';
-import { Head } from '@inertiajs/vue3';
+import DeleteForm from '@/Components/DeleteForm.vue';
+import { Head, usePage } from '@inertiajs/vue3';
 import NewForm from '@/Components/NewForm.vue';
 
-interface User { id: string; name: string; email: string; };
+interface User { id: number; name: string; email: string; };
 
 defineProps<{
   users: Array<User>,
 }>();
+
+const authUser = usePage().props.auth.user;
 </script>
 
 <template>
@@ -38,8 +40,13 @@ defineProps<{
               <tr v-for="u in users" :key="u.id">
                 <td class="mt-1 text-sm text-gray-600 dark:text-gray-400">{{ u.name }}</td>
                 <td class="mt-1 text-sm text-gray-600 dark:text-gray-400">{{ u.email }}</td>
-                <td class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  <DeleteUserForm class="float-right" :user="u" />
+                <td v-if="u.id !== authUser.id" class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                  <DeleteForm class="float-right"
+                    :element="u"
+                    :model="('user')"
+                    :question="('account')"
+                    :confirm=true
+                  />
                 </td>
               </tr>
             </tbody>
