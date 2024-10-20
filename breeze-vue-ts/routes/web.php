@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExportController;
 
 Route::get('/', function () {
   return Inertia::render('Welcome', [
@@ -31,5 +32,7 @@ Route::middleware('auth')->group(function () {
   Route::patch('/user', [UserController::class, 'update'])->name('user.update');
   Route::delete('/user', [UserController::class, 'destroy'])->name('user.destroy');
 });
+
+Route::post('/export', ExportController::class)->name('export');
 
 require __DIR__ . '/auth.php';

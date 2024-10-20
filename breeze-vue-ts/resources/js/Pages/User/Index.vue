@@ -4,6 +4,7 @@ import NewForm from '@/Components/NewForm.vue';
 import EditForm from '@/Components/EditForm.vue';
 import DeleteForm from '@/Components/DeleteForm.vue';
 import { Head, usePage } from '@inertiajs/vue3';
+import ExportForm from '@/Components/ExportForm.vue';
 
 interface User { id: number; name: string; email: string; };
 
@@ -20,9 +21,10 @@ const authUser = usePage().props.auth.user;
 
   <AuthenticatedLayout>
     <template #header>
-      <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Users</h2>
-        <NewForm  :storeRoute="('user.store')" :labels="[['name'],['email']]" />
+      <div class="space-x-8 sm:-my-px sm:ml-10 flex">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight p-1">Users</h2>
+        <NewForm :storeRoute="('user.store')" :labels="[['name'],['email']]" />
+        <ExportForm :elements="users" />
       </div>
     </template>
 
