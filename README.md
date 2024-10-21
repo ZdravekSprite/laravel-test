@@ -7,10 +7,18 @@ cd breeze-vue-ts
 composer run dev
 ```
 
+```bash
+composer install
+npm install
+php artisan migrate
+php artisan key:generate
+```
+
 - to-do:
   - [ ] [Vue](_vue/vue00.md)
 
-## Would you like to install a starter kit? [No starter kit]:
+## *Would you like to install a starter kit? [No starter kit]:*
+
   [none     ] No starter kit
   [breeze   ] Laravel Breeze
   [jetstream] Laravel Jetstream
@@ -31,24 +39,27 @@ Would you like any optional features? [None]:
   [ssr       ] Inertia SSR
   [typescript] TypeScript
 
-## Which testing framework do you prefer? [Pest]:
+## *Which testing framework do you prefer? [Pest]:*
+
   [0] Pest
   [1] PHPUnit
 
-## Would you like to initialize a Git repository? (yes/no) [no]:
+## *Would you like to initialize a Git repository? (yes/no) [no]:*
 
-## Which database will your application use? [SQLite]:
+## *Which database will your application use? [SQLite]:*
+
   [sqlite ] SQLite
   [mysql  ] MySQL
   [mariadb] MariaDB
   [pgsql  ] PostgreSQL (Missing PDO extension)
   [sqlsrv ] SQL Server (Missing PDO extension)
 
-## Would you like to run the default database migrations? (yes/no) [yes]:
+## *Would you like to run the default database migrations? (yes/no) [yes]:*
 
-- None vs Vue
+None vs Vue
 
-composer.json
+- composer.json
+
 ```json
     "require": {
         "laravel/sanctum": "^4.0",
@@ -58,7 +69,9 @@ composer.json
         "laravel/breeze": "^2.2",
     },
 ```
-package.json
+
+- package.json
+
 ```json
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
@@ -67,7 +80,9 @@ package.json
         "vue": "^3.4.0"
     }
 ```
-tailwind.config.js
+
+- tailwind.config.js
+
 ```js
 import forms from '@tailwindcss/forms';
 export default {
@@ -79,7 +94,9 @@ export default {
     plugins: [forms],
 };
 ```
-vite.config.js
+
+- vite.config.js
+
 ```js
 import vue from '@vitejs/plugin-vue';
 
@@ -99,12 +116,14 @@ export default defineConfig({
     ],
 });
 ```
+
 app\Http\Controllers\ProfileController.php
 app\Http\Controllers\Auth
 app\Http\Middleware\HandleInertiaRequests.php
 app\Http\Requests\ProfileUpdateRequest.php
 app\Http\Requests\Auth\LoginRequest.php
 app\Providers\AppServiceProvider.php
+
 ```php
 use Illuminate\Support\Facades\Vite;
 
@@ -113,7 +132,9 @@ use Illuminate\Support\Facades\Vite;
         Vite::prefetch(concurrency: 3);
     }
 ```
-bootstrap\app.php
+
+- bootstrap\app.php
+
 ```php
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
@@ -122,11 +143,13 @@ bootstrap\app.php
         ]);
     })
 ```
+
 bootstrap\cache\packages.php*
 bootstrap\cache\services.php*
 node_modules*
 public\build*
 resources\js\app.js
+
 ```js
 import '../css/app.css';
 
@@ -155,6 +178,7 @@ createInertiaApp({
     },
 });
 ```
+
 resources\js\Components
 resources\js\Layouts
 resources\js\Pages
@@ -162,6 +186,7 @@ resources\views\app.blade.php
 resources\views\welcome.blade.php-
 routes\auth.php
 routes\web.php
+
 ```php
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -188,12 +213,15 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 ```
+
 tests\Pest.php
+
 ```php
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
 ```
+
 tests\Feature\ProfileTest.php
 tests\Feature\Auth
 vendor*
